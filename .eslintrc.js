@@ -20,5 +20,9 @@ module.exports = {
     'no-unused-vars': 'warn',
     semi: ['error', 'never'],
   },
-  settings: {},
+  settings: {
+    'import/resolver': {
+      'babel-module': {},
+    },
+  },
 }
