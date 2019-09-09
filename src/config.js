@@ -5,4 +5,5 @@ export default {
   GH_REPO: process.env.GH_REPO,
   GH_TOKEN: process.env.GH_TOKEN,
   GH_OWNER: process.env.GH_OWNER,
+  LOG_LEVEL: process.env.LOG_LEVEL || 'debug',
 }

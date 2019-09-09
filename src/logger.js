@@ -1,18 +1,27 @@
 import winston from 'winston'
+import config from 'config'
+
+let level = 'error'
+
+if (config.LOG_LEVEL) {
+  level = config.LOG_LEVEL
+}
 
 const prettyJson = winston.format.printf((info) => {
   let { message } = info
 
-  if (info.message.constructor === Object) {
+  if (message && message.constructor === Object) {
     message = JSON.stringify(info.message, null, 4)
   }
-  return `${info.level}: ${message}`
+
+  return `${info.level}: \n\n${message}`
 })
 
 const logger = winston.createLogger({
-  level: 'debug',
+  level,
   transports: [
     new winston.transports.Console({
+      level: 'silly',
       format: winston.format.combine(
         winston.format.colorize(),
         winston.format.prettyPrint(),
